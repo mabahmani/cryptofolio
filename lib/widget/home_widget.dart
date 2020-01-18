@@ -3,22 +3,33 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-            icon: Image.asset('images/blockchain.png'), onPressed: null),
-        title: Text("Cryptofolio"),
-        centerTitle: true,
-        brightness: Brightness.dark,
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: DataSearch());
-              })
-        ],
-      ),
-    );
+    return
+      DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+                icon: Image.asset('images/blockchain.png'), onPressed: null),
+            title: Text("Cryptofolio"),
+            centerTitle: true,
+            brightness: Brightness.dark,
+            actions: <Widget>[
+              IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    showSearch(context: context, delegate: DataSearch());
+                  })
+            ],
+
+            bottom: TabBar(tabs: [
+              Tab(text: "ارزهای دیجیتال"),
+              Tab(text: "صرافی ها")],
+              labelColor: Colors.blue,
+              unselectedLabelColor: Colors.black,
+            ),
+          ),
+        ),
+      );
   }
 
 }
