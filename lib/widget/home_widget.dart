@@ -1,3 +1,4 @@
+import 'package:cryptofolio/widget/currency_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget{
@@ -27,6 +28,12 @@ class Home extends StatelessWidget{
               labelColor: Colors.blue,
               unselectedLabelColor: Colors.black,
             ),
+          ),
+          body: TabBarView(
+            children: <Widget>[
+              CurrencyItem(),
+              CurrencyItem()
+            ],
           ),
         ),
       );
