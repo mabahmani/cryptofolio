@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CurrencyItem extends StatefulWidget {
@@ -15,42 +14,129 @@ class CurrencyItemState extends State<CurrencyItem> {
     // TODO: implement build
     return Column(
       children: <Widget>[
-        Card(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-              Text("1"),
-              FlutterLogo(),
-              Column(
-                mainAxisSize: MainAxisSize.min,
+        Row(
+          children: <Widget>[
+            Container(
+              child: Row(
                 children: <Widget>[
-                  Text("FlutterCoin"),
-                  Row(
-                    children: <Widget>[
-                      Text("FTC"),
-                      Icon(Icons.arrow_drop_up),
-                      Text("+5.33")
-                    ],
+                  Container(
+                    child: Text(
+                      "1",
+                      style: TextStyle(
+                          color: Colors.blueGrey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12),
+                    ),
+                    padding: EdgeInsets.all(10),
+                  ),
+                  Container(
+                    child: FlutterLogo(),
+                    padding: EdgeInsets.all(5),
+                  ),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "FlutterCoin",
+                          style: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.bold),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "FTC",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12),
+                            ),
+                            Icon(
+                              Icons.arrow_drop_up,
+                              color: Colors.green,
+                            ),
+                            Text(
+                              "+5.33",
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                              textDirection: TextDirection.ltr,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    padding: EdgeInsets.all(10),
+                  ),
+                ],
+              ),
+            ),
+            Spacer(),
+            Container(
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(bottom: 6),
+                          child: Text(
+                            "\$8,641.19",
+                            style: TextStyle(
+                                color: Colors.black, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(right: 3),
+                              child: Text(
+                                "Bn",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 3),
+                              child: Text(
+                                "\$157.01",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(right: 3),
+                              child: Text(
+                                "MCap",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    padding: EdgeInsets.all(10),
+                  ),
+                  Container(
+                    child: Icon(Icons.star_border,color: Colors.grey,),
+                    padding: EdgeInsets.all(10),
                   )
                 ],
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Text("\$8,641.19"),
-                  Row(
-                    children: <Widget>[
-                      Text("MCap"),
-                      Text("\$157.01"),
-                      Text("Bn")
-                    ],
-                  )
-                ],
-              ),
-              Icon(Icons.star_border)
-            ],
-          ))
-        ],
-      );
-    }
+            )
+          ],
+        )
+      ],
+    );
+  }
 }
