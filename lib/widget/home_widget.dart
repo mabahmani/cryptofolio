@@ -1,44 +1,45 @@
-import 'package:cryptofolio/widget/currency_item_widget.dart';
+import 'package:cryptofolio/provider/currencies.dart';
+import 'package:cryptofolio/widget/currency_item_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return
-      DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-                icon: Image.asset('images/blockchain.png'), onPressed: null),
-            title: Text("Cryptofolio"),
-            centerTitle: true,
-            brightness: Brightness.dark,
-            actions: <Widget>[
-              IconButton(
-                  icon: Icon(Icons.search),
-                  onPressed: () {
-                    showSearch(context: context, delegate: DataSearch());
-                  })
-            ],
-
-            bottom: TabBar(tabs: [
-              Tab(text: "ارزهای دیجیتال"),
-              Tab(text: "صرافی ها")],
-              labelColor: Colors.blue,
-              unselectedLabelColor: Colors.black,
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              CurrencyItem(),
-              CurrencyItem()
-            ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              icon: Image.asset('images/blockchain.png'), onPressed: null),
+          title: Text("Cryptofolio"),
+          centerTitle: true,
+          brightness: Brightness.dark,
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {
+                  showSearch(context: context, delegate: DataSearch());
+                })
+          ],
+          bottom: TabBar(
+            tabs: [Tab(text: "ارزهای دیجیتال"), Tab(text: "صرافی ها")],
+            labelColor: Colors.blue,
+            unselectedLabelColor: Colors.black,
           ),
         ),
-      );
+        body: TabBarView(
+          children: <Widget>[
+            ChangeNotifierProvider(
+              create: (context) => Currencies(),
+              child: CurrencyItemList(),
+            ),
+            Container()
+          ],
+        ),
+      ),
+    );
   }
-
 }
 
 class DataSearch extends SearchDelegate<String> {
@@ -85,9 +86,9 @@ class DataSearch extends SearchDelegate<String> {
         textTheme: TextTheme(title: TextStyle(fontSize: 14.0)),
         inputDecorationTheme: InputDecorationTheme(
             hintStyle: TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.bold,
-            )));
+          fontSize: 14.0,
+          fontWeight: FontWeight.bold,
+        )));
   }
 
   @override
