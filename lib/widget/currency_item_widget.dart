@@ -1,8 +1,10 @@
 import 'dart:ffi';
+import 'dart:ui';
 
 import 'package:cryptofolio/model/currency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart' as intl;
 
 class CurrencyItem extends StatefulWidget {
   final Currency currency;
@@ -83,7 +85,7 @@ class CurrencyItemState extends State<CurrencyItem> {
                               ),
                               double.parse(currency.priceChangePct) < 0 ?
                               Text(
-                                currency.priceChangePct,
+                                intl.NumberFormat("% #0.00").format(double.parse(currency.priceChangePct)),
                                 style: TextStyle(
                                   color: Colors.redAccent,
                                   fontWeight: FontWeight.bold,
@@ -93,7 +95,7 @@ class CurrencyItemState extends State<CurrencyItem> {
                               )
                               :
                               Text(
-                                currency.priceChangePct,
+                                intl.NumberFormat("% #0.00").format(double.parse(currency.priceChangePct)),
                                 style: TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.bold,
@@ -120,7 +122,7 @@ class CurrencyItemState extends State<CurrencyItem> {
                         Container(
                           margin: EdgeInsets.only(bottom: 6),
                           child: Text(
-                            "\$" + currency.price,
+                            "\$"+intl.NumberFormat.decimalPattern().format(double.parse(currency.price)),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -133,21 +135,12 @@ class CurrencyItemState extends State<CurrencyItem> {
                             Container(
                               margin: EdgeInsets.only(right: 3),
                               child: Text(
-                                "Bn",
+                                intl.NumberFormat.compactLong().format(double.parse(currency.marketCap)),
                                 style: TextStyle(
                                     color: Colors.grey,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 10),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(right: 3),
-                              child: Text(
-                                "\$" + currency.marketCap,
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10),
+                              textDirection: TextDirection.ltr,
                               ),
                             ),
                             Container(
