@@ -1,6 +1,4 @@
 
-import 'dart:convert';
-
 class Currency {
   String id;
   String currency;
