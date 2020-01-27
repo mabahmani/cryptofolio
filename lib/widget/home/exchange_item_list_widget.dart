@@ -1,6 +1,6 @@
 import 'package:cryptofolio/provider/currencies.dart';
 import 'package:cryptofolio/provider/exchanges.dart';
-import 'package:cryptofolio/widget/exchange_item_widget.dart';
+import 'package:cryptofolio/widget/home/exchange_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

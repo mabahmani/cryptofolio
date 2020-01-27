@@ -1,6 +1,9 @@
-import 'package:cryptofolio/widget/home_widget.dart';
+import 'package:cryptofolio/provider/currencies.dart';
+import 'package:cryptofolio/widget/home/home_widget.dart';
+import 'package:cryptofolio/widget/portfolio/portfolio_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
 class Main extends StatefulWidget {
 
@@ -15,7 +18,7 @@ class MainState extends State<Main>{
 
   int _selectedSheet = 0;
   final _sheets =[
-    Home(),Home(),Home(),Home(),Home()
+    Home(), Portfolio(),Home(),Home(),Home()
   ];
 
   @override
