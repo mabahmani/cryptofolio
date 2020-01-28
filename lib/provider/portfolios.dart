@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Portfolios with ChangeNotifier{
-    List<Portfolio> _items = [
+    final List<Portfolio> _items = [
 /*        Portfolio.name(
             "",
             "ETH",

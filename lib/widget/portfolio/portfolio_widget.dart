@@ -33,12 +33,11 @@ class _PortfolioState extends State<Portfolio> {
   Widget build(BuildContext context) {
     final portfoliosData = Provider.of<Portfolios>(context);
     final portfolios = portfoliosData.items;
-    print(portfolios.length);
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(slivers: <Widget>[
         SliverAppBar(
-          title: PortfolioAppBarTitle(),
+          title: PortfolioAppBarTitle(portfolios),
           pinned: true,
           floating: true,
           flexibleSpace: FlexibleSpaceBar(background: PortfolioAppBarFlex()),
