@@ -1,4 +1,5 @@
 import 'package:cryptofolio/provider/currencies.dart';
+import 'package:cryptofolio/provider/portfolios.dart';
 import 'package:cryptofolio/widget/home/home_widget.dart';
 import 'package:cryptofolio/widget/portfolio/portfolio_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,11 @@ class MainState extends State<Main>{
 
   int _selectedSheet = 0;
   final _sheets =[
-    Home(), Portfolio(),Home(),Home(),Home()
+    Home(),
+    ChangeNotifierProvider(
+      create: (context) => Portfolios(),
+      child: Portfolio(),
+    ),Home(),Home(),Home()
   ];
 
   @override
