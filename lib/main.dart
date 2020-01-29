@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       locale: Locale("fa", "IR"),
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'IRANSansMobile',
         primaryColor: Colors.white,
         brightness: Brightness.light
       ),

@@ -41,7 +41,7 @@ class _PortfolioState extends State<Portfolio> {
           pinned: true,
           floating: true,
           flexibleSpace: FlexibleSpaceBar(background: PortfolioAppBarFlex()),
-          expandedHeight: 150,
+          expandedHeight: 200,
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate(
