@@ -23,7 +23,7 @@ class MainState extends State<Main>{
     ChangeNotifierProvider(
       create: (context) => Portfolios(),
       child: Portfolio(),
-    ),Home(),Home(),Home()
+    ),Container(),Container(),Container()
   ];
 
   @override
