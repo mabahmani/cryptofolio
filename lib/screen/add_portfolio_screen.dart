@@ -1,36 +1,123 @@
-
-import 'package:cryptofolio/model/portfolio.dart';
-import 'package:cryptofolio/provider/portfolios.dart';
-import 'package:cryptofolio/widget/portfolio/add_portfolio_item_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_svg/svg.dart';
 
-class AddPortfolio extends StatelessWidget {
-  final List<Portfolio> portfolios;
+class AddPortfolio extends StatefulWidget {
+  final _portfolio;
+  AddPortfolio(this._portfolio);
 
-  AddPortfolio(this.portfolios);
+  @override
+  _AddPortfolioState createState() => _AddPortfolioState(_portfolio);
+}
+
+class _AddPortfolioState extends State<AddPortfolio> {
+  final myController = TextEditingController();
+  final _portfolio;
+
+
+  _AddPortfolioState(this._portfolio);
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    myController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    print("portfolios:" + portfolios.length.toString());
+    print(myController.text);
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(icon:Icon(Icons.arrow_back), onPressed: () {
-          Navigator.of(context).pop();
-        },),
-        title: Text(
-          "افزودن دارایی",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        automaticallyImplyLeading: false,
+        actions: <Widget>[
+          CloseButton(),
+        ],
+        title: Container(
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 48,
+                height: 48,
+                child: widget._portfolio.logo.contains(".svg")
+                    ? SvgPicture.network(
+                        widget._portfolio.logo,
+                        fit: BoxFit.contain,
+                      )
+                    : Image.network(
+                        widget._portfolio.logo,
+                        fit: BoxFit.contain,
+                      ),
+                padding: EdgeInsets.all(5),
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    widget._portfolio.name,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 18),
+                  ),
+                  Text(
+                    widget._portfolio.symbol,
+                    style: TextStyle(color: Colors.grey, fontSize: 14),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
-        actions: <Widget>[Icon(Icons.search)],
       ),
-      body: ListView.separated(
-        itemCount: portfolios.length,
-        itemBuilder: (context, index) => AddPortfolioItem(portfolios[index]),
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
+      body: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Center(
+              child: Text("مقدار دارایی",
+              style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey),),
+            ),
+          ),
+          Center(
+            child: TextField(
+              controller: myController,
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
+              keyboardType: TextInputType.numberWithOptions(),
+              cursorWidth: 2,
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                hintText: '0',
+                hintStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+/*          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              margin: EdgeInsets.only(top: 12),
+                child: Center(child: Text((double.parse(_portfolio.price) * double.parse(myController.text == "" ? "0":myController.text)).toString()))),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text("ارزش نهایی",
+                  style: TextStyle(fontWeight: FontWeight.bold,color: Colors.grey)),
+            ),
+          ),*/
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RaisedButton(
+              onPressed: () {},
+              child: Text( "اضافه کردن "+widget._portfolio.symbol + " به دارایی ها",
+              style: TextStyle(color: Colors.white),),
+              color: Colors.blue,
+            ),
+          )
+        ],
       ),
     );
   }

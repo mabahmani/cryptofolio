@@ -20,8 +20,8 @@ class Portfolio {
         responseJson["name"],
         responseJson["price"],
         todayChanges["price_change"],
-        "",
-        ""
+        "124,000",
+        "256.0"
     );
   }
 }
